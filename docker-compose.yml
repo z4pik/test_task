@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+
+  db:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_DB: roulette
+      POSTGRES_USER: roulette_user
+      POSTGRES_PASSWORD: roulette_password
