@@ -66,7 +66,9 @@ def spin_roulette():
         user = User.query.filter_by(id=user_id).first()
 
         if not user:
-            add_user(user_id, 0, 0)
+            user = User(id=user_id, rounds_participated=0, spins_per_round=0)
+            db.session.add(user)
+            db.session.commit()
 
         user.rounds_participated += 1
         user.spins_per_round = (user.spins_per_round * (user.rounds_participated - 1) + random.uniform(0,
